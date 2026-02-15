@@ -1,0 +1,83 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.eggs/
+*.egg
+venv/
+.venv/
+
+# PyTorch
+*.pt
+*.pth
+*.ckpt
+checkpoints/
+
+# LaTeX
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+*.toc
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+
+# Data (large files)
+workspace/baselines/data/
+workspace/baselines/*/data/
+*.h5
+*.hdf5
+*.npy
+*.npz
+*.csv
+*.pkl
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs and results (not needed for Colab)
+workspace/results/
+workspace/logs/
+workspace/baselines/*/logs/
+workspace/baselines/*/results/
+
+# Documentation (internal notes)
+note/
+FORMALIZATION_SUMMARY.md
+README_FORMALIZATION.md
+RESEARCH_SOURCES.md
+LITERATURE_SEARCH_RESULTS.md
+THEORY_SYNTHESIS.md
+DATA_INTEGRITY.md
+GUARDIAN_GUIDE.md
+INTEGRITY_SYSTEM.md
+PROJECT_STATUS.md
+NEW_FEATURES_SUMMARY.md
+VERIFY_WORKFLOW.md
+IMPLEMENTATION_COMPLETE.md
+
+# Agent system (internal, not needed for Colab)
+.claude/agents/
+
+# LaTeX paper (not needed for Colab execution)
+workspace/paper/
+
+# Verification outputs
+workspace/src/verification_audit_trail.json
+
+# Environment
+.DS_Store
+.vscode/
+.idea/
