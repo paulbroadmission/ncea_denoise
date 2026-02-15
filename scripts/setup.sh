@@ -196,23 +196,27 @@ echo "============================================"
 echo "  Setup Complete!"
 echo "============================================"
 echo ""
-echo "  To start a research project, run:"
+echo "  🚀 Quick Start:"
 echo ""
-echo "    cd $(pwd)"
+echo "    # Step 1: Setup Colab GPU integration (one-time)"
+echo "    ./scripts/setup_colab.sh"
 echo ""
-echo "    # If using Colab GPU (recommended):"
-echo "    ./scripts/colab_sync.sh init"
-echo ""
-echo "    # Then start Claude Code:"
+echo "    # Step 2: Start Claude Code"
 echo "    claude"
 echo ""
-echo "  Then tell the orchestrator your research idea:"
-echo ""
-echo '    > Use the orchestrator agent to start research on:'
+echo "    # Step 3: Tell orchestrator your research idea:"
 echo '      Domain: [your domain]'
 echo '      Inspiration: [your key idea]'
 echo '      Target venue: [e.g., IEEE TIM]'
-echo '      Datasets: [benchmark datasets]'
 echo '      Success criteria: [e.g., exceed SOTA by 2%]'
 echo ""
+echo "  📖 Full documentation: README.md"
+echo ""
 echo "============================================"
+echo ""
+echo "Ready to setup Colab? (y/n)"
+read -r setup_colab_now
+if [[ "$setup_colab_now" =~ ^[yY]$ ]]; then
+    echo ""
+    bash scripts/setup_colab.sh
+fi

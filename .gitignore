@@ -53,20 +53,15 @@ workspace/logs/
 workspace/baselines/*/logs/
 workspace/baselines/*/results/
 
-# Documentation (internal notes)
+# Documentation (internal notes - all .md except README.md and key setup docs)
 note/
-FORMALIZATION_SUMMARY.md
-README_FORMALIZATION.md
-RESEARCH_SOURCES.md
-LITERATURE_SEARCH_RESULTS.md
-THEORY_SYNTHESIS.md
-DATA_INTEGRITY.md
-GUARDIAN_GUIDE.md
-INTEGRITY_SYSTEM.md
-PROJECT_STATUS.md
-NEW_FEATURES_SUMMARY.md
-VERIFY_WORKFLOW.md
-IMPLEMENTATION_COMPLETE.md
+*.md
+!README.md
+!scripts/setup.sh
+# Allowed setup guides (can comment if needed)
+# !COLAB_GPU_SETUP.md
+# !MODE2_QUICK_START.md
+# !START.md
 
 # Agent system (internal, not needed for Colab)
 .claude/agents/
