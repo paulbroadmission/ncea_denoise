@@ -124,15 +124,67 @@ claude
 
 ---
 
-## ☁️ Colab GPU 整合
+## ☁️ Colab GPU 整合 (模式 2: Agent Fleet)
+
+### 第一次設定 (一次性)
 
 ```bash
-./scripts/colab_sync.sh init     # 首次：建 Drive 資料夾 + 上傳 notebook
-./scripts/colab_sync.sh push     # 推 src/ 到 Drive
-# → Colab 按 Run All
-./scripts/colab_sync.sh watch    # 等完成
-./scripts/colab_sync.sh pull     # 拉回 results/
+# 1. 配置 rclone 連接 Google Drive（互動式）
+rclone config
+# 輸入選項：
+# n) 新遠端
+# name> gdrive
+# type> drive (選項 12)
+# 其餘選項都按 Enter 使用預設
+# 瀏覽器授權後，粘貼認證碼
+
+# 驗證設定
+rclone lsd gdrive:
+
+# 2. 初始化 Colab 專案目錄
+./scripts/colab_sync.sh init
 ```
+
+### 每次 Iteration 循環
+
+```bash
+# 1. 本地開發與測試
+python3 workspace/src/main.py --dataset synthetic --epochs 50
+# Guardian 應該通過 ✅
+
+# 2. 推送代碼到 Google Drive
+./scripts/colab_sync.sh push
+
+# 3. 在 Colab 執行
+# 打開: https://colab.research.google.com
+# File → Open from GitHub
+# paulbroadmission/ncea_denoise
+# 選擇: colab/COLAB_READY_AGENT_INTEGRATED.ipynb
+# Runtime → Change runtime type → GPU (T4/V100/A100)
+# Run All
+
+# 4. 拉回結果
+./scripts/colab_sync.sh pull
+```
+
+### Watchdog 自動審計 (Close-Loop)
+
+```bash
+# 結果會自動保存到:
+# workspace/results/iteration_001/
+#   ├─ test_results.json
+#   ├─ training_history.json
+#   └─ best_model.pt
+
+# 根據分數決策：
+# 9-10: PASS ✅ 完成
+# 7-8: MINOR REVISE 🔧 修改參數 → Iteration 2
+# 5-6: MAJOR REVISE 🔨 重新設計 → Iteration 2
+# 3-4: PIVOT 🔄 改變策略
+# 1-2: REJECT ❌ 停止
+```
+
+**完整設定指南** → 見 [`SETUP_COLAB_AGENT_MODE.md`](./SETUP_COLAB_AGENT_MODE.md)
 
 ---
 

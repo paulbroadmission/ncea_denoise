@@ -169,9 +169,18 @@ else
         echo "  ✅ Google Drive Desktop detected (for Colab sync)"
     else
         echo "  ⚠️  Neither rclone nor Google Drive Desktop found"
-        echo "     Install one for Colab GPU integration:"
-        echo "     - rclone: curl https://rclone.org/install.sh | sudo bash"
-        echo "     - Or install Google Drive Desktop"
+        echo "     Installing rclone for macOS..."
+
+        # Install rclone on macOS
+        if command -v brew &> /dev/null; then
+            echo "     Using Homebrew..."
+            brew install rclone
+            echo "  ✅ rclone installed via Homebrew"
+        else
+            echo "     Using official installer..."
+            curl https://rclone.org/install.sh | sudo bash
+            echo "  ✅ rclone installed"
+        fi
     fi
 fi
 
